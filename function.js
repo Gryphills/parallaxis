@@ -56,6 +56,7 @@ function createAnimationBox(data) {
     animBox.style.aspectRatio = `${data.ratio[0]}/${data.ratio[1]};`
     let animLayers = document.createElement('div');
     animBox.appendChild(animLayers);
+    animLayers.style = `width:100%;height:100%;`;
 
     //add loading screen:
     //let loadingEl = document.createElement('img');
