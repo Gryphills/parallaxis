@@ -1,3 +1,6 @@
+body {
+    background-color: #000;
+}
 
 .galleryitem {
     max-width:85vw;
@@ -5,13 +8,17 @@
     margin:auto;
     padding: 20px;
 }
+.animation-wrapper {
+    max-height: 75vh;
+    margin: auto;
+}
 .gallery-title {
     font-family: "Cinzel", "Trajan", serif;
     font-size: 3em;
     font-weight: bold;
     text-align: center;
     color: white;
-    padding: 15px;
+    margin: 0.5em;
 }
 
 .bgscreen {
