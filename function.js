@@ -104,7 +104,7 @@ function createAnimationBox(data) {
         //imageSetsToLoad.push([animBox, bgEl, spritesEl]);
 
         olImgData.alt = "Arrow to Play/Pause Animation Controls";
-        olImgData.src = 'https://i.postimg.cc/wqpCFwLZ/parallax-OLmin.png';
+        olImgData.src = 'https://i.postimg.cc/mTjB5h9j/sliderolpurple.png';
     } else {
         //this is a parallax box!
         //let planesimgsToLoad = [animBox]
@@ -120,7 +120,7 @@ function createAnimationBox(data) {
             animLayers.appendChild(planeEl);
         }
         olImgData.alt = "Use the Slider below to pan the background!"
-        olImgData.src = 'https://i.postimg.cc/wqpCFwLZ/parallax-OLmin.png';
+        olImgData.src = 'https://i.postimg.cc/mTjB5h9j/sliderolpurple.png';
         
         //imageSetsToLoad.push(planesimgsToLoad)
     }
