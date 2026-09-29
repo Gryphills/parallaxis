@@ -172,13 +172,14 @@ function loadingBetter() {
 
 function doneLoadingAnim(box) {
     //console.log('done loading smth!')
+    addAnimSlider(layersbox)
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
         loadingEl.style.display = 'none';
     }
 }
 
-function addAnimSlider(data, layersbox) {
+function addAnimSlider(layersbox) {
     //create controlsbox
     let sliderDiv = document.createElement('div');
     sliderDiv.classList.add('animcontrolsbox');
@@ -194,12 +195,12 @@ function addAnimSlider(data, layersbox) {
             setNewFrame(e.currentTarget.value, true, layersbox.children[0])
         })
         let playbutton = createAnimPlayButton();
-        sliderInput.max = data.frameData.length - 1;
+        sliderInput.max = JSON.parse(layersbox.parentElement.dataset.frameData).length - 1;
         sliderDiv.appendChild(playbutton);
     } else {
         sliderInput.max = 100;
-        let aspectH = layersbox.children[0].children[0].offsetHeight / Number(data.ratio[1]);
-        let aspectW = Number(aspectH) * Number(data.ratio[0]);						   
+        let aspectH = layersbox.children[0].children[0].offsetHeight / Number(layersbox.parentElement.dataset.ratio[1]);
+        let aspectW = Number(aspectH) * Number(layersbox.parentElement.dataset.ratio[0]);						   
         
         let exemptWidthPercent = aspectW / layersbox.children[0].children[0].offsetWidth;
         console.log(`slider aspect w/h is ${aspectW}/${aspectH} - exempt is ${exemptWidthPercent}`);
@@ -242,7 +243,7 @@ function waitForHeight() {
       if (element.children[0].children[0].offsetHeight == 0) {
         requestAnimationFrame(waitForHeight)
       } else {
-        addAnimSlider(args[0], args[1])
+        //addAnimSlider(args[1])
         //addParallaxSlider(parallaxBoxesLoaded);
         boxesNeedingSliders.splice(0,1)
         console.log(`got height for el! ${element.children[0].children[0].offsetWidth}/${element.children[0].children[0].offsetHeight}`)
