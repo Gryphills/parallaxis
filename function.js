@@ -243,7 +243,7 @@ function waitForHeight() {
 
 
 function slidePlanes(value, box, exemptWidthPercent) {
-  console.log('sliding?', value, box);
+  //console.log('sliding?', value, box);
   let planes = box.children;
   for (let i=0;i<planes.length; i++) {
     if (!planes[i].classList.contains("anim-olimg")) {
@@ -254,6 +254,7 @@ function slidePlanes(value, box, exemptWidthPercent) {
       
       let finalNum = ((Number(paraMin) + (Number(diff) * Number(value)/100))/100) * (100 * (1-Number(exemptWidthPercent)));
       planes[i].style.transform = "translateX(" + (0-(finalNum)).toString() + "%)";
+        console.log(planes[i], "translateX(" + (0-(finalNum)).toString() + "%)");
     } else {
       if (value != 0) {
         planes[i].style.display = "none"
