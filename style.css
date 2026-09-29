@@ -127,8 +127,8 @@ body {
 
 .loadingcover::after{
   background: url('https://i.postimg.cc/VNsN2Cs1/puppyrunsml.png');
-  height: 150px;
-  width: 150px;
+  height: 300px;
+  width: 300px;
   background-size: cover;
   content: 'Loading...';
   background-position: center center;
