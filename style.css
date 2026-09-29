@@ -76,7 +76,7 @@
   position: relative;
   overflow:hidden;
 }
-.parallax {
+.anim-parallax {
   max-width: none;
   position: absolute;
   top: 0px;
