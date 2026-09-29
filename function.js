@@ -13,6 +13,7 @@ createAllAnimBoxes()
 
 function createAllAnimBoxes() {
     let boxes = document.getElementsByClassName('animation-wrapper');
+    console.log(`we got ${boxes.length} boxes :)`;
     for (let i=0; i<boxes.length; i++) {
         let box = boxes[i];
         let isParallax = box.dataset.isParallax
@@ -139,7 +140,7 @@ function createAnimationBox(data) {
 function loadingBetter() {
     let waitingforImgDivs = document.querySelectorAll('.waiting-for-imgs')
     let unloadedCounter = waitingforImgDivs.length;
-    //console.log(`loading ${unloadedCounter} set of imgs!`)
+    console.log(`loading ${unloadedCounter} set of imgs!`)
     for (let i=0;i<waitingforImgDivs.length; i++) {
         let thisDiv = waitingforImgDivs[i];
         let imgs = thisDiv.querySelectorAll('img');
@@ -165,7 +166,7 @@ function loadingBetter() {
 
 
 function doneLoadingAnim(box) {
-    //console.log('done loading smth!')
+    console.log('done loading smth!')
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
         loadingEl.style.display = 'none;'
