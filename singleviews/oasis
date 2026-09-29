@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="/../stylesheet" href="style.css">
+		<script src="/../function.js"></script>
+  </head>
+	<body>
+    <div class="bgscreen">
+      <div class="galleryitem">
+        <div class="animation-wrapper"
+		  style= "aspect-ratio: 16/9;"
+          data-is-parallax ="true" 
+          data-ratio = "16/9"
+          data-planes-src='[
+            "https://i.postimg.cc/05wFmw33/parallax-bg-sky.png",
+            "https://i.postimg.cc/qB3Sn3Yb/parallax-bg2-temple.png",
+            "https://i.postimg.cc/FFL8cLqP/parallax-mg1-hill.png",
+            "https://i.postimg.cc/CMqXDqXy/parallax-mg2-oasis.png",
+            "https://i.postimg.cc/DfXHsXDN/parallax-fg-rock.png" 
+          ]' data-parallax-data='[
+            {"startVal": 52, "endVal": 54},
+            {"startVal": 45, "endVal": 53},
+            {"startVal": 56, "endVal": 74},
+            {"startVal": 0, "endVal": 76 },
+            {"startVal": -30, "endVal": 100}
+          ]'>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
