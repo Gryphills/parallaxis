@@ -189,16 +189,16 @@ function addAnimSlider(data, layersbox) {
 
     if (!data.isParallax) {
         sliderInput.addEventListener('input', function(e) {
-            setNewFrame(e.currentTarget.value, true, layersbox)
+            setNewFrame(e.currentTarget.value, true, layersbox.children[0])
         })
         let playbutton = createAnimPlayButton();
         sliderInput.max = data.frameData.length - 1;
         sliderDiv.appendChild(playbutton);
     } else {
         sliderInput.max = data.parallaxData.length - 1;
-        let exemptWidthPercent = data.ratio[0] / layersbox.children[0].offsetWidth;
-        sliderInput.addEventListener('input', function(e) {slidePlanes(e.currentTarget.value, layersbox, exemptWidthPercent)});
-        slidePlanes(sliderInput.value, layersbox, exemptWidthPercent);
+        let exemptWidthPercent = data.ratio[0] / layersbox.children[0].children[0].offsetWidth;
+        sliderInput.addEventListener('input', function(e) {slidePlanes(e.currentTarget.value, layersbox.children[0], exemptWidthPercent)});
+        slidePlanes(sliderInput.value, layersbox.children[0], exemptWidthPercent);
     }
     sliderDiv.appendChild(sliderInput);
     layersbox.after(sliderDiv);
