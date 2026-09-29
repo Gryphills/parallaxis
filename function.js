@@ -316,8 +316,13 @@ function playOrStopAnim(signal, boxEl) {
   }
 }
 
-if (document) {
-    createAllAnimBoxes()
-} else {
-    console.log('so no document???');
+function getStarted() {
+    let boxes = document.getElementsByClassName('animation-wrapper');
+    if (boxes.length > 0) {
+        createAllAnimBoxes();
+    } else {
+        console.log('?');
+        requestAnimationFrame(getStarted());
+    }
 }
+getStarted()
