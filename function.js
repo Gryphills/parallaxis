@@ -199,8 +199,9 @@ function addAnimSlider(box) {
     //console.log(layersbox.parentElement, `isparallax? ${isParallax}`);
     if (isParallax == true || isParallax == "true") {
         sliderInput.max = 100;
-        let aspectH = layersbox.children[0].children[0].offsetHeight / Number(box.dataset.ratio[1]);
-        let aspectW = Number(aspectH) * Number(box.dataset.ratio[0]);						   
+        let ratio = box.dataset.ratio.split('/');
+        let aspectH = layersbox.children[0].children[0].offsetHeight / Number(ratio[1]);
+        let aspectW = Number(aspectH) * Number(ratio[0]);						   
         
         let exemptWidthPercent = aspectW / layersbox.children[0].children[0].offsetWidth;
         console.log(`slider aspect w/h is ${aspectW}/${aspectH} - exempt is ${exemptWidthPercent}`);
