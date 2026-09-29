@@ -42,7 +42,7 @@ function createAllAnimBoxes() {
         }
         let newBox = createAnimationBox(animBoxData);
         box.appendChild(newBox);
-        addAnimSlider(animBoxData, newBox.children[0])
+        addAnimSlider(animBoxData, newBox)
         box.classList.add('waiting-for-imgs')
     }
     requestAnimationFrame(loadingBetter)
