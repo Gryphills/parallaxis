@@ -67,7 +67,7 @@ function createAnimationBox(data) {
 
       //add a loading cover :-)
     let loadCover = document.createElement("div");
-    loadCover.style = 'width:100%;height:100%;background-color:rgba(120,110,95,0.8);';
+    //loadCover.style = 'width:100%;height:100%;background-color:rgba(120,110,95,0.8);';
    // let loadText = document.createElement('p');
     //loadText.textContent = 'Loading Animation...';
     //let loadImg = document.createElement('img');
