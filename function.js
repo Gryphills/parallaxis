@@ -171,7 +171,7 @@ function loadingBetter() {
 
 
 function doneLoadingAnim(box) {
-    console.log('done loading smth!')
+    //console.log('done loading smth!')
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
         loadingEl.style.display = 'none';
@@ -197,7 +197,7 @@ function addAnimSlider(data, layersbox) {
         sliderInput.max = data.frameData.length - 1;
         sliderDiv.appendChild(playbutton);
     } else {
-        sliderInput.max = data.parallaxData.length - 1;
+        sliderInput.max = 100;
         let exemptWidthPercent = data.ratio[0] / layersbox.children[0].children[0].offsetWidth;
         if (exemptWidthPercent == Infinity || exemptWidthPercent == NaN){
             exemptWidthPercent = 0
@@ -260,7 +260,7 @@ function slidePlanes(value, box, exemptWidthPercent) {
       let paraMin = Number(parallaxData[0]);
       let paraMax = Number(parallaxData[1]);
       let diff = paraMax - paraMin;
-      console.log(paraMin, paraMax, diff, value, exemptWidthPercent);
+      //console.log(paraMin, paraMax, diff, value, exemptWidthPercent);
       let finalNum = ((Number(paraMin) + (Number(diff) * Number(value)/100))/100) * (100 * (1-Number(exemptWidthPercent)));
       planes[i].style.transform = "translateX(" + (0-(finalNum)).toString() + "%)";
         
