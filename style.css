@@ -1,12 +1,12 @@
 
 .galleryitem {
-    max-width:90vh;
+    max-width:85vw;
     max-height:80vh;
     margin:auto;
     padding: 20px;
 }
 .bgscreen {
-    background-color: #45447a;
+    background-color: #000;
     min-height:100vh;
     margin: -8px;
 }
@@ -48,9 +48,10 @@
   appearance: none;
   width: 100%; /* Full-width */
   height: 25px; /* Specified height */
-  background: #e9dac4; /* Grey background */
-  outline: #786e5f solid 2px;
+  background: #513a6c66; 
+  outline: #896591a6 solid 2px;
   border-radius: 2px;
+    
 }
 .animslider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
@@ -123,4 +124,5 @@
 }
 .animcontrolsbox {
     display:flex;
+    margin-top:10px;
 }
