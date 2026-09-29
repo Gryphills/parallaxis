@@ -128,11 +128,11 @@ body {
 .loadingcover::after{
   height: 40%;
   width: 20%;
-  background-size: contain;
-  background-repeat: no-repeat;
   background: url('https://i.postimg.cc/VNsN2Cs1/puppyrunsml.png');
   content: 'Loading...';
   background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
   top:25%;
   left:40%;
