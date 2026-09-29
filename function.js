@@ -21,6 +21,7 @@ function createAllAnimBoxes() {
             "ratio" : box.style.aspectRatio.split("/"),
         }
         if (isParallax == true || isParallax == "true") {
+            console.log('parallaxfound!');
             animBoxData.isParallax = true;
             animBoxData.planesSrc = box.dataset.planesSrc;
             animBoxData.parallaxData = JSON.parse(box.dataset.parallaxData);
@@ -75,8 +76,6 @@ function createAnimationBox(data) {
     animBox.appendChild(loadCover)
 
 
-
-
     let olImgData = {
         "src" : "",
         "alt" : ""
@@ -97,7 +96,7 @@ function createAnimationBox(data) {
         spritesEl.style = `height:${Number(data.rows) * 100}%; width: ${Number(data.cols)*100}%;`
 
         animLayers.appendChild(spritesEl);
-        imageSetsToLoad.push([animBox, bgEl, spritesEl]);
+        //imageSetsToLoad.push([animBox, bgEl, spritesEl]);
 
         olImgData.alt = "Arrow to Play/Pause Animation Controls";
         olImgData.src = 'https://i.postimg.cc/wqpCFwLZ/parallax-OLmin.png';
@@ -117,7 +116,7 @@ function createAnimationBox(data) {
         olImgData.alt = "Use the Slider below to pan the background!"
         olImgData.src = 'https://i.postimg.cc/wqpCFwLZ/parallax-OLmin.png';
         
-        imageSetsToLoad.push(planesimgsToLoad)
+        //imageSetsToLoad.push(planesimgsToLoad)
     }
 
     
@@ -315,6 +314,3 @@ function playOrStopAnim(signal, boxEl) {
     elementCurrentlyPlaying = undefined;
   }
 }
-
-
-console.log("AAAAAAAAAAAAAAAAAAAAAA");
