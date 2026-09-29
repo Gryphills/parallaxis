@@ -195,7 +195,7 @@ function addAnimSlider(layersbox) {
     sliderInput.value = 0;
     sliderInput.classList.add("animslider");
 
-    if (!data.isParallax) {
+    if (!layersbox.parentElement.dataset.isParallax) {
         sliderInput.addEventListener('input', function(e) {
             setNewFrame(e.currentTarget.value, true, layersbox.children[0])
         })
