@@ -24,7 +24,7 @@ function createAllAnimBoxes() {
         if (isParallax == true || isParallax == "true") {
             console.log('parallaxfound!');
             animBoxData.isParallax = true;
-            animBoxData.planesSrc = box.dataset.planesSrc;
+            animBoxData.planesSrc = JSON.parse(box.dataset.planesSrc);
             animBoxData.parallaxData = JSON.parse(box.dataset.parallaxData);
         } else {
             animBoxData.isParallax = false;
