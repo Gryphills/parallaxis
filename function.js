@@ -171,10 +171,7 @@ function doneLoadingAnim(box) {
     console.log('done loading smth!')
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
-        loadingEl.style.display = 'none;'
-        console.log("got????", box, loadingEl);
-    } else {
-        console.log("tf", box, loadingEl);
+        loadingEl.style.display = 'none';
     }
 }
 
