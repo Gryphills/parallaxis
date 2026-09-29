@@ -9,7 +9,7 @@ let previousTime = startTime;
 let currentTime = 0;
 let deltaTime = 0;
 
-
+createAllAnimBoxes()
 
 function createAllAnimBoxes() {
     let boxes = document.getElementsByClassName('animation-wrapper');
