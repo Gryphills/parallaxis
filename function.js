@@ -109,7 +109,7 @@ function createAnimationBox(data) {
         //todo: put da planes here lol
         for (let i=0; i<data.parallaxData.length; i++) {
             let planeEl = document.createElement('img');
-            planeEl.src = data.planesSrc;
+            planeEl.src = data.planesSrc[i];
             planeEl.classList.add("anim-parallax");
             planeEl.dataset.parallax = `${data.parallaxData[i].startVal}/${data.parallaxData[i].endVal}`
             
