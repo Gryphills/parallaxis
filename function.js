@@ -172,8 +172,9 @@ function doneLoadingAnim(box) {
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
         loadingEl.style.display = 'none;'
+        console.log("got????", box, loadingEl);
     } else {
-        console.log(box, loadingEl);
+        console.log("tf", box, loadingEl);
     }
 }
 
