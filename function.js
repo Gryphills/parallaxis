@@ -19,7 +19,7 @@ function createAllAnimBoxes() {
         let isParallax = box.dataset.isParallax
         let animBoxData = {
             "thumbnailSrc" : box.dataset.thumbnailSrc,
-            "ratio" : box.style.aspectRatio.split("/"),
+            "ratio" : box.dataset.ratio.split("/"),
         }
         if (isParallax == true || isParallax == "true") {
             console.log('parallaxfound!');
@@ -200,8 +200,9 @@ function addAnimSlider(data, layersbox) {
         sliderInput.max = 100;
         let aspectH = layersbox.children[0].children[0].offsetHeight / Number(data.ratio[1]);
         let aspectW = Number(aspectH) * Number(data.ratio[0]);						   
-                      
+        
         let exemptWidthPercent = aspectW / layersbox.children[0].children[0].offsetWidth;
+        console.log(`slider aspect w/h is ${aspectW}/${aspectH} - exempt is ${exemptWidthPercent}`);
         //let exemptWidthPercent = data.ratio[0] / layersbox.children[0].children[0].offsetWidth;
         if (exemptWidthPercent == Infinity || exemptWidthPercent == NaN){
             exemptWidthPercent = 0
@@ -244,11 +245,12 @@ function waitForHeight() {
         addAnimSlider(args[0], args[1])
         //addParallaxSlider(parallaxBoxesLoaded);
         boxesNeedingSliders.splice(0,1)
-        console.log(`got height for el! ${element.children[0].children[0].offsetHeight}`)
+        console.log(`got height for el! ${element.children[0].children[0].offsetWidth}/${element.children[0].children[0].offsetHeight}`)
+          
         if (boxesNeedingSliders.length > 0) {
           requestAnimationFrame(waitForHeight)
         } else {
-          console.log("Done waiting for height!")
+          console.log("Done waiting for all height!")
         }
       }
     }
