@@ -172,6 +172,8 @@ function doneLoadingAnim(box) {
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
         loadingEl.style.display = 'none;'
+    } else {
+        console.log(box, loadingEl);
     }
 }
 
