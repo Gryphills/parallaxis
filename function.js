@@ -184,7 +184,8 @@ function doneLoadingAnim(box) {
     }
 }
 
-function addAnimSlider(layersbox) {
+function addAnimSlider(box) {
+    let layersbox = box.children[0]
     //create controlsbox
     let sliderDiv = document.createElement('div');
     sliderDiv.classList.add('animcontrolsbox');
@@ -194,12 +195,12 @@ function addAnimSlider(layersbox) {
     sliderInput.min = 0;
     sliderInput.value = 0;
     sliderInput.classList.add("animslider");
-    let isParallax = layersbox.parentElement.dataset.isParallax;
-    console.log(layersbox.parentElement, `isparallax? ${isParallax}`);
+    let isParallax = box.dataset.isParallax;
+    //console.log(layersbox.parentElement, `isparallax? ${isParallax}`);
     if (isParallax == true || isParallax == "true") {
         sliderInput.max = 100;
-        let aspectH = layersbox.children[0].children[0].offsetHeight / Number(layersbox.parentElement.dataset.ratio[1]);
-        let aspectW = Number(aspectH) * Number(layersbox.parentElement.dataset.ratio[0]);						   
+        let aspectH = layersbox.children[0].children[0].offsetHeight / Number(box.dataset.ratio[1]);
+        let aspectW = Number(aspectH) * Number(box.dataset.ratio[0]);						   
         
         let exemptWidthPercent = aspectW / layersbox.children[0].children[0].offsetWidth;
         console.log(`slider aspect w/h is ${aspectW}/${aspectH} - exempt is ${exemptWidthPercent}`);
@@ -214,7 +215,7 @@ function addAnimSlider(layersbox) {
             setNewFrame(e.currentTarget.value, true, layersbox.children[0])
         })
         let playbutton = createAnimPlayButton();
-        sliderInput.max = JSON.parse(layersbox.parentElement.dataset.frameData).length - 1;
+        sliderInput.max = JSON.parse(box.dataset.frameData).length - 1;
         sliderDiv.appendChild(playbutton);
     }
     sliderDiv.appendChild(sliderInput);
