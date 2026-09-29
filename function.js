@@ -243,6 +243,7 @@ function waitForHeight() {
 
 
 function slidePlanes(value, box, exemptWidthPercent) {
+  console.log('sliding?', value, box);
   let planes = box.children;
   for (let i=0;i<planes.length; i++) {
     if (!planes[i].classList.contains("anim-olimg")) {
