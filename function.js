@@ -244,8 +244,8 @@ function waitForHeight() {
 function slidePlanes(value, box, exemptWidthPercent) {
   let planes = box.children;
   for (let i=0;i<planes.length; i++) {
-    if (!planes[i].classList.contains("parallax-olimg")) {
-      let parallaxData = planes[i].dataset.animParallax.split("/");
+    if (!planes[i].classList.contains("anim-olimg")) {
+      let parallaxData = planes[i].dataset.parallax.split("/");
       let paraMin = Number(parallaxData[0]);
       let paraMax = Number(parallaxData[1]);
       let diff = paraMax - paraMin;
