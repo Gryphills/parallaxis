@@ -189,7 +189,7 @@ function addAnimSlider(data, layersbox) {
 
     if (!data.isParallax) {
         sliderInput.addEventListener('input', function(e) {
-            setNewFrame(e.currentTarget.value, true, e.currentTarget.parentElement.parentElement)
+            setNewFrame(e.currentTarget.value, true, layersbox)
         })
         let playbutton = createAnimPlayButton();
         sliderInput.max = data.frameData.length - 1;
