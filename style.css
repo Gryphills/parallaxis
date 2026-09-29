@@ -2,11 +2,13 @@
 .galleryitem {
     max-width:90vh;
     max-height:80vh;
+    margin:auto;
+    padding: 20px;
 }
 .bgscreen {
     background-color: #45447a;
     min-height:100vh;
-    width:100vh;
+    margin: -8px;
 }
 
 
