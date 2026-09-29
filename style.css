@@ -5,6 +5,15 @@
     margin:auto;
     padding: 20px;
 }
+.gallery-title {
+    font-family: "Cinzel", "Trajan", serif;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding: 15px;
+}
+
 .bgscreen {
     background-color: #000;
     min-height:100vh;
