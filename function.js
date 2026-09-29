@@ -172,7 +172,7 @@ function loadingBetter() {
 
 function doneLoadingAnim(box) {
     //console.log('done loading smth!')
-    addAnimSlider(layersbox)
+    addAnimSlider(box)
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
         loadingEl.style.display = 'none';
