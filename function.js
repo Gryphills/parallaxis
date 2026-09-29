@@ -194,15 +194,9 @@ function addAnimSlider(layersbox) {
     sliderInput.min = 0;
     sliderInput.value = 0;
     sliderInput.classList.add("animslider");
-
-    if (!layersbox.parentElement.dataset.isParallax) {
-        sliderInput.addEventListener('input', function(e) {
-            setNewFrame(e.currentTarget.value, true, layersbox.children[0])
-        })
-        let playbutton = createAnimPlayButton();
-        sliderInput.max = JSON.parse(layersbox.parentElement.dataset.frameData).length - 1;
-        sliderDiv.appendChild(playbutton);
-    } else {
+    let isParallax = layersbox.parentElement.dataset.isParallax;
+    console.log(layersbox.parentElement, `isparallax? ${isParallax}`);
+    if (isParallax == true || isParallax == "true") {
         sliderInput.max = 100;
         let aspectH = layersbox.children[0].children[0].offsetHeight / Number(layersbox.parentElement.dataset.ratio[1]);
         let aspectW = Number(aspectH) * Number(layersbox.parentElement.dataset.ratio[0]);						   
@@ -215,6 +209,14 @@ function addAnimSlider(layersbox) {
         }
         sliderInput.addEventListener('input', function(e) {slidePlanes(e.currentTarget.value, layersbox.children[0], exemptWidthPercent)});
         slidePlanes(sliderInput.value, layersbox.children[0], exemptWidthPercent);
+    } else {
+        sliderInput.addEventListener('input', function(e) {
+            setNewFrame(e.currentTarget.value, true, layersbox.children[0])
+        })
+        let playbutton = createAnimPlayButton();
+        sliderInput.max = JSON.parse(layersbox.parentElement.dataset.frameData).length - 1;
+        sliderDiv.appendChild(playbutton);
+    }
     }
     sliderDiv.appendChild(sliderInput);
     layersbox.after(sliderDiv);
