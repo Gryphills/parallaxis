@@ -110,7 +110,8 @@ function createAnimationBox(data) {
             planeEl.src = data.planesSrc;
             planeEl.classList.add("anim-parallax");
             planeEl.dataset.parallax = `${data.parallaxData[i].startVal}/${data.parallaxData[i].endVal}`
-            planeEl.style = `height:${data.parallaxData.length * 100}%; top:${(100 / data.parallaxData.length) * i}%;`;
+            
+            //planeEl.style = `height:${data.parallaxData.length * 100}%; top:${(100 / data.parallaxData.length) * i}%;`;
             planesimgsToLoad.push(planeEl)
             animLayers.appendChild(planeEl);
         }
