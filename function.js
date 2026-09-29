@@ -217,7 +217,6 @@ function addAnimSlider(layersbox) {
         sliderInput.max = JSON.parse(layersbox.parentElement.dataset.frameData).length - 1;
         sliderDiv.appendChild(playbutton);
     }
-    }
     sliderDiv.appendChild(sliderInput);
     layersbox.after(sliderDiv);
 
