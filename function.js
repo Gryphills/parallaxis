@@ -234,13 +234,13 @@ function waitForHeight() {
     if (boxesNeedingSliders.length > 0) {
         let args = boxesNeedingSliders[0]
         let element = args[1];
-      if (element.offsetHeight == 0) {
+      if (element.children[0].children[0].offsetHeight == 0) {
         requestAnimationFrame(waitForHeight)
       } else {
         addAnimSlider(args[0], args[1])
         //addParallaxSlider(parallaxBoxesLoaded);
         boxesNeedingSliders.splice(0,1)
-       // console.log(parallaxBoxesLoaded, parallaxBoxes.length)
+        console.log(`got height for el! ${element.children[0].children[0].offsetHeight}`)
         if (boxesNeedingSliders.length > 0) {
           requestAnimationFrame(waitForHeight)
         } else {
