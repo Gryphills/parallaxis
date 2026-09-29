@@ -199,6 +199,9 @@ function addAnimSlider(data, layersbox) {
     } else {
         sliderInput.max = data.parallaxData.length - 1;
         let exemptWidthPercent = data.ratio[0] / layersbox.children[0].children[0].offsetWidth;
+        if (exemptWidthPercent == Infinity || exemptWidthPercent == NaN){
+            exemptWidthPercent = 0
+        }
         sliderInput.addEventListener('input', function(e) {slidePlanes(e.currentTarget.value, layersbox.children[0], exemptWidthPercent)});
         slidePlanes(sliderInput.value, layersbox.children[0], exemptWidthPercent);
     }
