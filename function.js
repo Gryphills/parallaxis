@@ -13,7 +13,7 @@ createAllAnimBoxes()
 
 function createAllAnimBoxes() {
     let boxes = document.getElementsByClassName('animation-wrapper');
-    console.log(`we got ${boxes.length} boxes :)`;
+    console.log(`we got ${boxes.length} boxes :-)`);
     for (let i=0; i<boxes.length; i++) {
         let box = boxes[i];
         let isParallax = box.dataset.isParallax
