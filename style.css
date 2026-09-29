@@ -1,5 +1,6 @@
 body {
     background-color: #000;
+    font-family: "Cinzel", "Trajan", serif;
 }
 
 .galleryitem {
@@ -13,7 +14,6 @@ body {
     margin: auto;
 }
 .gallery-title {
-    font-family: "Cinzel", "Trajan", serif;
     font-size: 3em;
     font-weight: bold;
     text-align: center;
@@ -74,7 +74,7 @@ body {
   appearance: none;
   width: 30px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: url('https://i.postimg.cc/0yTLT4GX/slidergrabber.png');
+  background: url('https://i.postimg.cc/hPFtcw4V/slidergrabberp.png');
   border: 0;
   cursor: ew-resize; /* Cursor on hover */
 }
@@ -82,7 +82,7 @@ body {
 .animslider::-moz-range-thumb {
   width: 30px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: url('https://i.postimg.cc/0yTLT4GX/slidergrabber.png');
+  background: url('https://i.postimg.cc/hPFtcw4V/slidergrabberp.png');
   background-size: cover;
   border: 0px;
   cursor: ew-resize; /* Cursor on hover */
@@ -126,7 +126,7 @@ body {
 }
 
 .loadingcover::after{
-  background: url(https://i.postimg.cc/qkVGvLZq/puppyrunaa.png);
+  background: url('https://i.postimg.cc/VNsN2Cs1/puppyrunsml.png');
   height: 150px;
   width: 150px;
   background-size: cover;
