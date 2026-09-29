@@ -251,10 +251,11 @@ function slidePlanes(value, box, exemptWidthPercent) {
       let paraMin = Number(parallaxData[0]);
       let paraMax = Number(parallaxData[1]);
       let diff = paraMax - paraMin;
-      
+      console.log(paraMin, paraMax, diff, value, exemptWidthPercent);
       let finalNum = ((Number(paraMin) + (Number(diff) * Number(value)/100))/100) * (100 * (1-Number(exemptWidthPercent)));
       planes[i].style.transform = "translateX(" + (0-(finalNum)).toString() + "%)";
-        console.log(planes[i], "translateX(" + (0-(finalNum)).toString() + "%)");
+        
+    //console.log(planes[i], "translateX(" + (0-(finalNum)).toString() + "%)");
     } else {
       if (value != 0) {
         planes[i].style.display = "none"
