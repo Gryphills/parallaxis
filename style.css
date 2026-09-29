@@ -109,7 +109,7 @@
     top: 0px;
 }
 
-.loadingcover ::after{
+.loadingcover::after{
   background: url(https://i.postimg.cc/qkVGvLZq/puppyrunaa.png);
   height: 150px;
   width: 150px;
