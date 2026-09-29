@@ -316,13 +316,17 @@ function playOrStopAnim(signal, boxEl) {
   }
 }
 
+let somethingwrong = 0
+
 function getStarted() {
     let boxes = document.getElementsByClassName('animation-wrapper');
     if (boxes.length > 0) {
         createAllAnimBoxes();
+    } else if (somethingwrong < 500) {
+        somethingwrong += 1
+        setTimeout(getStarted, 100);
     } else {
-        console.log('?');
-        requestAnimationFrame(getStarted());
+        console.log('so no boxes?');
     }
 }
 getStarted()
