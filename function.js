@@ -9,7 +9,7 @@ let previousTime = startTime;
 let currentTime = 0;
 let deltaTime = 0;
 
-
+let boxesNeedingSliders = []
 
 function createAllAnimBoxes() {
     let boxes = document.getElementsByClassName('animation-wrapper');
@@ -42,7 +42,9 @@ function createAllAnimBoxes() {
         }
         let newBox = createAnimationBox(animBoxData);
         box.appendChild(newBox);
-        addAnimSlider(animBoxData, newBox)
+        boxesNeedingSliders.push([animBoxData, newBox]);
+        requestAnimationFrame(waitForHeight)
+        
         box.classList.add('waiting-for-imgs')
     }
     requestAnimationFrame(loadingBetter)
@@ -226,19 +228,23 @@ function createAnimPlayButton() {
 
 
 function waitForHeight() {
-  let element = parallaxBoxes[parallaxBoxesLoaded]
-  if (element.offsetHeight == 0) {
-    requestAnimationFrame(waitForHeight)
-  } else {
-    addParallaxSlider(parallaxBoxesLoaded);
-    parallaxBoxesLoaded += 1;
-    console.log(parallaxBoxesLoaded, parallaxBoxes.length)
-    if (parallaxBoxesLoaded < parallaxBoxes.length) {
-      requestAnimationFrame(waitForHeight)
-    } else {
-      console.log("Done loading parallax sliders!")
+    if (boxesNeedingSliders.length > 0) {
+        let args = boxesNeedingSliders[0]
+        let element = args[1];
+      if (element.offsetHeight == 0) {
+        requestAnimationFrame(waitForHeight)
+      } else {
+        addAnimSlider(args[0], args[1])
+        //addParallaxSlider(parallaxBoxesLoaded);
+        boxesNeedingSliders.splice(0,1)
+       // console.log(parallaxBoxesLoaded, parallaxBoxes.length)
+        if (boxesNeedingSliders.length > 0) {
+          requestAnimationFrame(waitForHeight)
+        } else {
+          console.log("Done waiting for height!")
+        }
+      }
     }
-  }
 }
 
 
