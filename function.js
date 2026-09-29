@@ -198,7 +198,11 @@ function addAnimSlider(data, layersbox) {
         sliderDiv.appendChild(playbutton);
     } else {
         sliderInput.max = 100;
-        let exemptWidthPercent = data.ratio[0] / layersbox.children[0].children[0].offsetWidth;
+        let aspectH = layersbox.children[0].children[0].offsetHeight / Number(data.ratio[1]);
+        let aspectW = Number(aspectH) * Number(data.ratio[0]);						   
+                      
+        let exemptWidthPercent = aspectW / layersbox.children[0].children[0].offsetWidth;
+        //let exemptWidthPercent = data.ratio[0] / layersbox.children[0].children[0].offsetWidth;
         if (exemptWidthPercent == Infinity || exemptWidthPercent == NaN){
             exemptWidthPercent = 0
         }
