@@ -107,7 +107,7 @@ function createAnimationBox(data) {
         olImgData.src = 'https://i.postimg.cc/wqpCFwLZ/parallax-OLmin.png';
     } else {
         //this is a parallax box!
-        let planesimgsToLoad = [animBox]
+        //let planesimgsToLoad = [animBox]
         //todo: put da planes here lol
         for (let i=0; i<data.parallaxData.length; i++) {
             let planeEl = document.createElement('img');
@@ -116,7 +116,7 @@ function createAnimationBox(data) {
             planeEl.dataset.parallax = `${data.parallaxData[i].startVal}/${data.parallaxData[i].endVal}`
             
             //planeEl.style = `height:${data.parallaxData.length * 100}%; top:${(100 / data.parallaxData.length) * i}%;`;
-            planesimgsToLoad.push(planeEl)
+            //planesimgsToLoad.push(planeEl)
             animLayers.appendChild(planeEl);
         }
         olImgData.alt = "Use the Slider below to pan the background!"
@@ -133,6 +133,7 @@ function createAnimationBox(data) {
     olImg.alt = olImgData.alt;
     olImg.src = olImgData.src;
     olImg.classList.add('anim-olimg');
+    olImg.style.visibility = 'hidden';
     animLayers.appendChild(olImg);
 
   
@@ -173,6 +174,10 @@ function loadingBetter() {
 function doneLoadingAnim(box) {
     //console.log('done loading smth!')
     addAnimSlider(box)
+    let olImg = box.querySelector('.anim-olimg');
+    if (olImg) {
+        olImg.style.visibility = "visible";
+    }
     let loadingEl = box.querySelector('.loadingcover');
     if (loadingEl) {
         loadingEl.style.display = 'none';
