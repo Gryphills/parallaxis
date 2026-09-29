@@ -317,3 +317,4 @@ function playOrStopAnim(signal, boxEl) {
 }
 
 
+console.log("AAAAAAAAAAAAAAAAAAAAAA");
