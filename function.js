@@ -198,7 +198,7 @@ function addAnimSlider(box) {
     let isParallax = box.dataset.isParallax;
     //console.log(layersbox.parentElement, `isparallax? ${isParallax}`);
     if (isParallax == true || isParallax == "true") {
-        sliderInput.max = 100;
+        sliderInput.max = 1000;
         let ratio = box.dataset.ratio.split('/');
         let aspectH = layersbox.children[0].children[0].offsetHeight / Number(ratio[1]);
         let aspectW = Number(aspectH) * Number(ratio[0]);						   
@@ -209,8 +209,8 @@ function addAnimSlider(box) {
         if (exemptWidthPercent == Infinity || exemptWidthPercent == NaN){
             exemptWidthPercent = 0
         }
-        sliderInput.addEventListener('input', function(e) {slidePlanes(e.currentTarget.value, layersbox.children[0], exemptWidthPercent)});
-        slidePlanes(sliderInput.value, layersbox.children[0], exemptWidthPercent);
+        sliderInput.addEventListener('input', function(e) {slidePlanes((e.currentTarget.value*.1), layersbox.children[0], exemptWidthPercent)});
+        slidePlanes(sliderInput.value*.1, layersbox.children[0], exemptWidthPercent);
     } else {
         sliderInput.addEventListener('input', function(e) {
             setNewFrame(e.currentTarget.value, true, layersbox.children[0])
