@@ -24,18 +24,24 @@
       <div class="galleryitem">
 		  <h2 class="gallery-title">Videoooo!</h2>
         <div class="videotest" style="max-width:50vw; margin: auto;">
-			<video width="100%" height="auto" controls="">
+			<!--<video width="100%" height="auto" controls="">
 			  <source src="../tenetesta.mov" type="video/quicktime">
 				Your browser is having issues with this video, sorry :(!
 			</video>
-			<br><br>
+			<br><br>-->
 			<video id="vid" width="100%" controls="">
+		
 				<source src="../SharkRescue_WM_3.mp4" type="video/mp4">
 				Your browser is having issues with this video, sorry :(!
 			</video>
-			<p style="color:white;text-align: center;" id="counter">0</p>
-			<input id="slidey" type="range" style="width: 100%;" min="0">
-			<input type="button" data-toggle="0" value="Play/pause" onclick="playpause(this)"></div>
+		<div style="/*! overflow: clip; */ height: 540px; width: 960px;">
+			<div id="nabbedframes" style="display:flex;">
+				
+			</div>
+		</div>
+		<p style="color:white;text-align: center;" id="counter">1.5416666666666665</p>
+		<input id="slidey" type="range" style="width: 100%;/*! height: 40px; */" min="0" max="297.471984">
+		<input type="button" data-toggle="0" value="Play/pause" onclick="playpause(this)"></div>
       </div>
     </div>
   </body>
