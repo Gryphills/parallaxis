@@ -517,13 +517,13 @@ function loadFrameToCtx(frame) {
   ctx.drawImage(vid, 0,0,frameWidth,frameHeight)
   
   
-  if (framesloaded < 96 && Math.floor(vid.duration*24) > Math.floor(framesloaded)) {
+  if (vid.dataset.framesloaded < 96 && Math.floor(vid.duration*24) > Math.floor(vid.dataset.framesloaded)) {
     
-    framesloaded = frame + 1
-    prepFrameforLoad(framesloaded)
+    vid.dataset.framesloaded = frame + 1
+    prepFrameforLoad(vid.dataset.framesloaded)
   } else {
-      if (loadingvid) {
-        loadingvid = false;
+      if (vid.dataset.loadingvid) {
+        vid.dataset.loadingvid = false;
         getStarted()
       }
     //console.log('weh??', frame, Math.floor(vid.currentTime*24), Math.floor(slider.value))
@@ -534,14 +534,14 @@ function loadAnimationLoop(timestamp) {
   //let counter = document.getElementById('counter');
   //let slider = document.getElementById('slidey');
   let vid = document.querySelector('video');
-  if (loadingvid == true) {
+  if (vid.dataset.loadingvid == true) {
     currentTime = timestamp;
     deltaTime = currentTime - previousTime;
     if (deltaTime > interval) {
       previousTime = currentTime - (deltaTime % interval);
       //
       if (Number(vid.dataset.vidbuffer) < 1) {
-        loadFrameToCtx(framesloaded);
+        loadFrameToCtx(vid.dataset.framesloaded);
         vid.dataset.vidbuffer = 1;
       } else {
         Number(vid.dataset.vidbuffer) -= 1;
