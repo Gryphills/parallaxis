@@ -220,9 +220,14 @@ function addAnimSlider(box) {
     } else {
         sliderInput.addEventListener('input', function(e) {
             setNewFrame(e.currentTarget.value, true, box)
-        })
+        });
         let playbutton = createAnimPlayButton();
-        sliderInput.max = JSON.parse(box.dataset.frameData).length - 1;
+        if (!box.classList.contains('fromvid')) {
+            sliderInput.max = JSON.parse(box.dataset.frameData).length - 1;
+        } else {
+            sliderInput.max = box.querySelect('.canvasbox').children.length
+        }
+        
         sliderDiv.appendChild(playbutton);
     }
     sliderDiv.appendChild(sliderInput);
