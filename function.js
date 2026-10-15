@@ -384,6 +384,7 @@ function playOrStopAnim(signal, boxEl) {
 let somethingwrong = 0
 
 function getStarted() {
+    console.log('startingBoxes!')
     let boxes = document.getElementsByClassName('animation-wrapper');
     if (boxes.length > 0) {
         createAllAnimBoxes();
