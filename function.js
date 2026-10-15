@@ -555,7 +555,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let videosPresent = checkForVideos()
     if (!videosPresent) {
         console.log('no vids :V!')
-        getStarted()
+        let boxes = document.getElementsByClassName('animation-wrapper');
+        if (boxes.length > 0) {
+            createAllAnimBoxes();
+        }
     }
 })
 
