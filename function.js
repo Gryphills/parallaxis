@@ -578,7 +578,7 @@ function loadFrameToCtx(frame) {
   ctx.drawImage(vid, 0,0,frameWidth,frameHeight)
 
   
-  console.log(Number(vid.dataset.framesloaded), 96, Math.floor(vid.duration*24), Math.floor(Number(vid.dataset.framesloaded))
+  console.log(Number(vid.dataset.framesloaded), 96, Math.floor(vid.duration*24), Math.floor(Number(vid.dataset.framesloaded)))
   if (Number(vid.dataset.framesloaded) < 96 && Math.floor(vid.duration*24) > Math.floor(Number(vid.dataset.framesloaded))) {
     vid.dataset.framesloaded = frame + 1
     prepFrameforLoad(vid.dataset.framesloaded)
