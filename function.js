@@ -218,7 +218,7 @@ function addAnimSlider(box) {
         sliderInput.addEventListener('input', function(e) {slidePlanes((e.currentTarget.value*.1), layersbox.children[0], exemptWidthPercent)});
         slidePlanes(sliderInput.value*.1, layersbox.children[0], exemptWidthPercent);
     } else {
-        if (box.classList.contains('fromvid') {
+        if (box.classList.contains('fromvid')) {
             sliderInput.addEventListener('input', function(e) {
                 vidNewFrame(e.currentTarget.value, true, box)
             });
@@ -313,7 +313,7 @@ function animationLoop(timestamp) {
             deltaTime = currentTime - previousTime;
             if (deltaTime > interval) {
                 previousTime = currentTime - (deltaTime % interval);
-                if (elementCurrentlyPlaying.classList.contains('fromvid') {
+                if (elementCurrentlyPlaying.classList.contains('fromvid')) {
                     vidNewFrame(Number(elementCurrentlyPlaying.dataset.currentFrame), false, elementCurrentlyPlaying)
                 } else {
                     setNewFrame(Number(elementCurrentlyPlaying.dataset.currentFrame), false, elementCurrentlyPlaying)
