@@ -526,10 +526,23 @@ function prepFrameforLoad(frame) {
 
 function loadFrameToCtx(frame) {
   console.log(`wheee do ${frame}`, document.querySelector('.canvasbox'))
+  let vid = document.querySelector('video')
+  let frameWidth = 0;
+  let frameHeight = 0;
+  
+  frameWidth = vid.videoWidth;
+  frameHeight = vid.videoHeight;
+    
+  if (frameHeight == 0) {
+    console.log('oops we got no height!')
+    prepFrameforLoad(frame)
+    return;
+  }
+
   let canvas = document.createElement('canvas')
   document.querySelector('.canvasbox').appendChild(canvas)
   let ctx = canvas.getContext('2d')
-  let vid = document.querySelector('video')
+  
   //let slider = document.getElementById('slidey')
   
   let framecount = Math.floor(vid.duration*24);
@@ -542,11 +555,7 @@ function loadFrameToCtx(frame) {
   //vid.currentTime = value
 
   //setting width and height properties for canvas
-  let frameWidth = 0;
-  let frameHeight = 0;
-  
-  frameWidth = vid.videoWidth;
-  frameHeight = vid.videoHeight;
+ 
   
  //console.log(`got em as ${frameWidth}/${frameHeight} `)
   
@@ -567,7 +576,9 @@ function loadFrameToCtx(frame) {
   canvas.width = frameWidth
   
   ctx.drawImage(vid, 0,0,frameWidth,frameHeight)
+
   
+  console.log(Number(vid.dataset.framesloaded), 96, Math.floor(vid.duration*24), Math.floor(Number(vid.dataset.framesloaded))
   if (Number(vid.dataset.framesloaded) < 96 && Math.floor(vid.duration*24) > Math.floor(Number(vid.dataset.framesloaded))) {
     vid.dataset.framesloaded = frame + 1
     prepFrameforLoad(vid.dataset.framesloaded)
