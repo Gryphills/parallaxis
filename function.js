@@ -526,8 +526,8 @@ function loadFrameToCtx(frame) {
     vid.dataset.framesloaded = frame + 1
     prepFrameforLoad(vid.dataset.framesloaded)
   } else {
-      if (vid.dataset.loadingvid) {
-        vid.dataset.loadingvid = false;
+      if (vid.dataset.loadingvid != "false") {
+        vid.dataset.loadingvid = "false";
         getStarted()
       }
     //console.log('weh??', frame, Math.floor(vid.currentTime*24), Math.floor(slider.value))
