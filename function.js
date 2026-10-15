@@ -549,7 +549,7 @@ function loadAnimationLoop(timestamp) {
         loadFrameToCtx(Number(vid.dataset.framesloaded));
         vid.dataset.vidbuffer = 1;
       } else {
-        Number(vid.dataset.vidbuffer) -= 1;
+        vid.dataset.vidbuffer = Number(vid.dataset.vidbuffer) - 1;
         requestAnimationFrame(loadAnimationLoop);
       }
       
