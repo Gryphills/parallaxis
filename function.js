@@ -426,7 +426,7 @@ function checkForVideos() {
         canvasbox.style = "width: 100%; height: 100%;"
         animbox.appendChild(canvasbox);
         
-        newbox.addAnimSlider()
+        addAnimSlider(newbox)
         newbox.style.display = 'none';
         vid.after(newbox);
 
