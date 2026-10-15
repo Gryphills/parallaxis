@@ -412,6 +412,15 @@ function checkForVideos() {
     //console.log(videoList);
     if (videoList.length > 0) {
         let vid = document.querySelector('video');
+        vid.addEventListener('canplaythrough ', videoPrep(vid));
+        return true;
+    } else {
+        console.log('novids D:');
+        return false;
+    }
+}
+
+function videoPrep(vid) {
         vid.dataset.loadingvid = true;
         vid.dataset.framesloaded=0;
         vid.dataset.vidbuffer = 2;
@@ -436,11 +445,6 @@ function checkForVideos() {
         vid.after(newbox);
 
         prepFrameforLoad(0);
-        return true;
-    } else {
-        console.log('novids D:');
-        return false;
-    }
 }
 
 
