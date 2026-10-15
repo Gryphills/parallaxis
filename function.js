@@ -403,7 +403,7 @@ function getStarted() {
 ///videos!
 
 function checkForVideos() {
-    if (document.querySelector('video')) {
+    if (document.querySelector('video').length > 0) {
         let vid = document.querySelector('video');
         vid.dataset.loadingvid = true;
         vid.dataset.framesloaded=0;
