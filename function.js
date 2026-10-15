@@ -403,12 +403,14 @@ function getStarted() {
 ///videos!
 
 function checkForVideos() {
-    if (document.querySelector('video').length > 0) {
+    let videoList = document.querySelector('video')
+    console.log(videoList);
+    if (videoList.length > 0) {
         let vid = document.querySelector('video');
         vid.dataset.loadingvid = true;
         vid.dataset.framesloaded=0;
         vid.dataset.vidbuffer = 2;
-        prepFrameforLoad(0);
+        
         console.log('prepping video!');
         
         let newbox = document.createElement('div');
@@ -427,10 +429,12 @@ function checkForVideos() {
         newbox.addAnimSlider()
         newbox.style.display = 'none';
         vid.after(newbox);
-        return true;
+
+        prepFrameforLoad(0);
+        //return true;
     } else {
-        console.log('novids');
-        return false;
+        console.log('novids D:');
+        //return false;
     }
 }
 
