@@ -538,8 +538,8 @@ function loadAnimationLoop(timestamp) {
   //let counter = document.getElementById('counter');
   //let slider = document.getElementById('slidey');
   let vid = document.querySelector('video');
-    console.log(`vidbuffer is ${vid.dataset.vidbuffer}; loadingvid is `, vid.dataset.loadingvid)
-  if (vid.dataset.loadingvid == true) {
+  console.log(`vidbuffer is ${vid.dataset.vidbuffer}; loadingvid is `, vid.dataset.loadingvid)
+  if (vid.dataset.loadingvid == true || vid.dataset.loadingvid == 'true') {
     currentTime = timestamp;
     deltaTime = currentTime - previousTime;
     if (deltaTime > interval) {
