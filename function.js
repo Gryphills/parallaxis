@@ -335,7 +335,7 @@ function setNewFrame(idx, isFromSlider, animbox) {
   
   
 
-  console.log(currentFrame)
+  //console.log(currentFrame)
   if (frameData[currentFrame][0] != 0) {
     newPosX = (-100 / animbox.dataset.cols) * frameData[currentFrame][0]
     //newPosX = -100 + (100 / (spriteTable.frameTiming[idx][1] + 1) );
@@ -408,8 +408,10 @@ function checkForVideos() {
         vid.dataset.framesloaded=0;
         vid.dataset.vidbuffer = 2;
         prepFrameforLoad(0);
+        console.log('prepping video!')
         return true;
     } else {
+        console.log('novids')
         return false;
     }
 }
@@ -530,6 +532,7 @@ function loadAnimationLoop(timestamp) {
 
 
 if (!checkForVideos()) {
+    console.log('no vids :V!')
     getStarted()
 }
 
