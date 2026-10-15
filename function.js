@@ -11,9 +11,11 @@ let deltaTime = 0;
 
 let boxesNeedingSliders = []
 
+
+
 function createAllAnimBoxes() {
     let boxes = document.getElementsByClassName('animation-wrapper');
-    console.log(`we got ${boxes.length} boxes :-)`);
+    //console.log(`we got ${boxes.length} boxes :-)`);
     for (let i=0; i<boxes.length; i++) {
         let box = boxes[i];
         let isParallax = box.dataset.isParallax
@@ -22,7 +24,7 @@ function createAllAnimBoxes() {
             "ratio" : box.dataset.ratio.split("/"),
         }
         if (isParallax == true || isParallax == "true") {
-            console.log('parallaxfound!');
+            //console.log('parallaxfound!');
             animBoxData.isParallax = true;
             animBoxData.planesSrc = JSON.parse(box.dataset.planesSrc);
             animBoxData.parallaxData = JSON.parse(box.dataset.parallaxData);
@@ -89,18 +91,22 @@ function createAnimationBox(data) {
     if (data.isParallax == "false" || data.isParallax == false) {
         //this is spriteanimation!
         //create bg img;
-        let bgEl = document.createElement('img');
-        bgEl.src = bgSrc;
-        bgEl.classList.add("anim-bg");
-
-        animLayers.appendChild(bgEl);
+        if (data.hasBg) {
+          let bgEl = document.createElement('img');
+          bgEl.src = data.bgSrc;
+          bgEl.classList.add("anim-bg");
+          animLayers.appendChild(bgEl);
+        }
+        
         //create sprites:
         let spritesEl = document.createElement('img');
-        spritesEl.src = spriteSrc;
+        spritesEl.src = data.spriteSrc;
         spritesEl.classList.add("anim-sprites");
+        console.log("cols: ", data.cols)
         spritesEl.style = `height:${Number(data.rows) * 100}%; width: ${Number(data.cols)*100}%;`
 
         animLayers.appendChild(spritesEl);
+        animBox.dataset.currentFrame = 0;
         //imageSetsToLoad.push([animBox, bgEl, spritesEl]);
 
         olImgData.alt = "Arrow to Play/Pause Animation Controls";
@@ -213,7 +219,7 @@ function addAnimSlider(box) {
         slidePlanes(sliderInput.value*.1, layersbox.children[0], exemptWidthPercent);
     } else {
         sliderInput.addEventListener('input', function(e) {
-            setNewFrame(e.currentTarget.value, true, layersbox.children[0])
+            setNewFrame(e.currentTarget.value, true, box)
         })
         let playbutton = createAnimPlayButton();
         sliderInput.max = JSON.parse(box.dataset.frameData).length - 1;
@@ -307,31 +313,60 @@ function animationLoop(timestamp) {
 
 
 function setNewFrame(idx, isFromSlider, animbox) {
+  //console.log(idx)
+  if (isNaN(idx)) {
+    //console.log('a! nan!');
+    idx = 0;
+  }
   let newPosX = 0;
   let newPosY = 0;
-  if (spriteTable.frameTiming[idx][0] != 0) {
-    newPosX = (-100 / spriteTable.cols) * spriteTable.frameTiming[idx][0]
+  let frameData = JSON.parse(animbox.dataset.frameData)
+  let currentFrame = Number(idx)
+  let animSlider = animbox.querySelector('.animslider')
+  
+  
+  
+  if (!animbox.dataset.currentFrame) {
+    animbox.dataset.currentFrame = idx;
+    currentFrame = idx;
+    //console.log('aaa',currentFrame)
+  }
+  //console.log(frameData, currentFrame, idx)
+  
+  
+
+  console.log(currentFrame)
+  if (frameData[currentFrame][0] != 0) {
+    newPosX = (-100 / animbox.dataset.cols) * frameData[currentFrame][0]
     //newPosX = -100 + (100 / (spriteTable.frameTiming[idx][1] + 1) );
   } else {
     newPosX = 0;
   }
-  if (spriteTable.frameTiming[idx][1] != 0) {
-    newPosY =  (-100 / spriteTable.rows) * spriteTable.frameTiming[idx][1]
+  if (frameData[currentFrame][1] != 0) {
+    newPosY =  (-100 / animbox.dataset.rows) * frameData[currentFrame][1]
   } else {
     newPosY = 0;
   }
-  let animSlider = animbox.children[animbox.children.length-1][1]
   if (isFromSlider) {
-    animSlider.parentElement[0].dataset.toggled = "false";
+    animSlider.parentElement.children[0].dataset.toggled = "false";
     playOrStopAnim(false, animbox)
-
   } else {
-    animSlider.value = idx;
+    animSlider.value = currentFrame;
   }
+  let spritesEl = animbox.querySelector(".anim-sprites")
   spritesEl.style.transform = "translate(" + newPosX + "%, " + newPosY + "%)";
-  spriteTable.currentFrame += 1;
-  if (spriteTable.currentFrame >= spriteTable.frameTiming.length) {
-      spriteTable.currentFrame = 0;
+
+  if (isFromSlider) {
+    currentFrame = animSlider.value
+  } else {
+    currentFrame = idx + 1;
+  }
+  
+  if (currentFrame >= frameData.length) {
+      animbox.dataset.currentFrame = 0;
+  }
+  else {
+    animbox.dataset.currentFrame = currentFrame;
   }
 }
 
@@ -359,4 +394,144 @@ function getStarted() {
         console.log('so no boxes?');
     }
 }
-getStarted()
+
+
+
+
+
+///videos!
+
+function checkForVideos() {
+    if (document.querySelector('video')) {
+        let vid = document.querySelector('video');
+        vid.dataset.loadingvid = true;
+        vid.dataset.framesloaded=0;
+        vid.dataset.vidbuffer = 2;
+        prepFrameforLoad(0);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+/*function prep() {
+  let framecount = document.querySelector('#vid').duration*24;
+  let counter = document.getElementById('counter');
+  counter.textContent = "0"
+  let slider = document.getElementById('slidey')
+  slider.min = 0;
+  slider.max = framecount;
+  slider.value = 0;
+  slider.addEventListener('input', function(e) {
+    counter.textContent = slider.value + 1
+    setCounter()
+  })
+}*/
+
+function prepFrameforLoad(frame) {
+  let vid = document.querySelector('video')
+  //let slider = document.getElementById('slidey')
+  let frame24 = 41.666666666666664
+  let value = (frame*frame24)/1000
+  //let counter = document.getElementById('counter');
+  //counter.textContent = value
+  //slider.value = frame;
+  vid.currentTime = value
+  //vidbuffer = 0
+  requestAnimationFrame(loadAnimationLoop)
+}
+//console.log()
+function loadFrameToCtx(frame) {
+  let canvas = document.createElement('canvas')
+  document.getElementById('nabbedframes').appendChild(canvas)
+  let ctx = canvas.getContext('2d')
+  let vid = document.querySelector('video')
+  //let slider = document.getElementById('slidey')
+  
+  let framecount = Math.floor(vid.duration*24);
+  let frame24 = 41.666666666666664
+  let value = (frame*frame24)/1000
+  //let counter = document.getElementById('counter');
+  //counter.textContent = value
+  //slider.value = frame;
+  
+  //vid.currentTime = value
+
+  //setting width and height properties for canvas
+  let frameWidth = 0;
+  let frameHeight = 0;
+  
+  frameWidth = vid.videoWidth;
+  frameHeight = vid.videoHeight;
+  
+ //console.log(`got em as ${frameWidth}/${frameHeight} `)
+  
+  if (frameHeight - vid.clientHeight > 500 || frameWidth - vid.clientWidth > 500 ) {
+    //console.log(`client is ${vid.clientHeight}/${vid.clientHeight}`)
+    //console.log(`got em down from ${frameWidth}/${frameHeight} to ${frameWidth/2}/${frameHeight/2} `)
+    frameWidth = frameWidth/2
+    frameHeight = frameHeight/2
+    //console.log('bigg gap!',frameWidth - vid.clientWidth, frameHeight - vid.clientHeight)
+  }
+  if (frameWidth > 1500 || frameHeight > 1500) {
+    frameWidth = frameWidth/2
+    frameHeight = frameHeight/2
+  }
+  document.getElementById('nabbedframes').parentElement.style.height = frameHeight + 'px'
+  document.getElementById('nabbedframes').parentElement.style.width = frameWidth + 'px'
+  canvas.height = frameHeight
+  canvas.width = frameWidth
+  
+  
+  ctx.drawImage(vid, 0,0,frameWidth,frameHeight)
+  
+  
+  if (framesloaded < 96 && Math.floor(vid.duration*24) > Math.floor(framesloaded)) {
+    
+    framesloaded = frame + 1
+    prepFrameforLoad(framesloaded)
+  } else {
+    loadingvid = false;
+    getStarted()
+    //console.log('weh??', frame, Math.floor(vid.currentTime*24), Math.floor(slider.value))
+  }
+}
+
+function loadAnimationLoop(timestamp) {
+  //let counter = document.getElementById('counter');
+  //let slider = document.getElementById('slidey');
+  let vid = document.querySelector('video');
+  if (loadingvid == true) {
+    currentTime = timestamp;
+    deltaTime = currentTime - previousTime;
+    if (deltaTime > interval) {
+      previousTime = currentTime - (deltaTime % interval);
+      //
+      if (Number(vid.dataset.vidbuffer) < 1) {
+        loadFrameToCtx(framesloaded);
+        vid.dataset.vidbuffer = 1;
+      } else {
+        Number(vid.dataset.vidbuffer) -= 1;
+        requestAnimationFrame(loadAnimationLoop);
+      }
+      
+      //slider.value = vid.currentTime*24;
+      //counter.textContent = slider.value;
+      //console.log(vid.currentTime);
+    } else {
+       requestAnimationFrame(loadAnimationLoop);
+    }
+   
+  } 
+}
+
+
+
+if (!checkForVideos()) {
+    getStarted()
+}
+
+
+
