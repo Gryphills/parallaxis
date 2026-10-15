@@ -225,7 +225,7 @@ function addAnimSlider(box) {
         if (!box.classList.contains('fromvid')) {
             sliderInput.max = JSON.parse(box.dataset.frameData).length - 1;
         } else {
-            sliderInput.max = box.querySelect('.canvasbox').children.length
+            sliderInput.max = box.querySelector('.canvasbox').children.length
         }
         
         sliderDiv.appendChild(playbutton);
