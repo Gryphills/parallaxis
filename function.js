@@ -513,8 +513,10 @@ function loadFrameToCtx(frame) {
     framesloaded = frame + 1
     prepFrameforLoad(framesloaded)
   } else {
-    loadingvid = false;
-    getStarted()
+      if (loadingvid) {
+        loadingvid = false;
+        getStarted()
+      }
     //console.log('weh??', frame, Math.floor(vid.currentTime*24), Math.floor(slider.value))
   }
 }
