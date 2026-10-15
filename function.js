@@ -403,8 +403,8 @@ function getStarted() {
 ///videos!
 
 function checkForVideos() {
-    let videoList = document.querySelector('video')
-    console.log(videoList);
+    let videoList = document.querySelectorAll('video')
+    //console.log(videoList);
     if (videoList.length > 0) {
         let vid = document.querySelector('video');
         vid.dataset.loadingvid = true;
@@ -431,10 +431,10 @@ function checkForVideos() {
         vid.after(newbox);
 
         prepFrameforLoad(0);
-        //return true;
+        return true;
     } else {
         console.log('novids D:');
-        //return false;
+        return false;
     }
 }
 
