@@ -464,7 +464,7 @@ function videoPrep(vid) {
 }*/
 
 function prepFrameforLoad(frame) {
-  let vid = document.querySelector('video')
+  let vid = document.querySelector('video');
   //let slider = document.getElementById('slidey')
   let frame24 = 41.666666666666664
   let value = (frame*frame24)/1000
@@ -522,10 +522,11 @@ function loadFrameToCtx(frame) {
   
   ctx.drawImage(vid, 0,0,frameWidth,frameHeight)
   
-  if (vid.dataset.framesloaded < 96 && Math.floor(vid.duration*24) > Math.floor(vid.dataset.framesloaded)) {
+  if (Number(vid.dataset.framesloaded) < 96 && Math.floor(vid.duration*24) > Math.floor(Number(vid.dataset.framesloaded))) {
     vid.dataset.framesloaded = frame + 1
     prepFrameforLoad(vid.dataset.framesloaded)
   } else {
+      console.log(Number(vid.dataset.framesloaded))
       if (vid.dataset.loadingvid != "false") {
         vid.dataset.loadingvid = "false";
         getStarted()
