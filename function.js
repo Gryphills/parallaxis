@@ -409,10 +409,27 @@ function checkForVideos() {
         vid.dataset.framesloaded=0;
         vid.dataset.vidbuffer = 2;
         prepFrameforLoad(0);
-        console.log('prepping video!')
+        console.log('prepping video!');
+        
+        let newbox = document.createElement('div');
+        newbox.classList = 'animation-wrap fromvid';
+        newbox.dataset.fromvid = true;
+        
+        let animbox = document.createElement('div');
+        animbox.classList.add('animbox');
+        newbox.appendChild(animbox);
+        
+        let canvasbox = document.createElement('div');
+        canvasbox.classList.add('canvasbox');
+        canvasbox.style = "width: 100%; height: 100%;"
+        animbox.appendChild(canvasbox);
+        
+        newbox.addAnimSlider()
+        newbox.style.display = 'none';
+        vid.after(newbox);
         return true;
     } else {
-        console.log('novids')
+        console.log('novids');
         return false;
     }
 }
@@ -448,7 +465,7 @@ function prepFrameforLoad(frame) {
 //console.log()
 function loadFrameToCtx(frame) {
   let canvas = document.createElement('canvas')
-  document.getElementById('nabbedframes').appendChild(canvas)
+  document.getElementsByClass('canvasbox')[0].appendChild(canvas)
   let ctx = canvas.getContext('2d')
   let vid = document.querySelector('video')
   //let slider = document.getElementById('slidey')
@@ -482,8 +499,8 @@ function loadFrameToCtx(frame) {
     frameWidth = frameWidth/2
     frameHeight = frameHeight/2
   }
-  document.getElementById('nabbedframes').parentElement.style.height = frameHeight + 'px'
-  document.getElementById('nabbedframes').parentElement.style.width = frameWidth + 'px'
+  document.getElementsByClass('canvasbox')[0].parentElement.style.height = frameHeight + 'px'
+  document.getElementsByClass('canvasbox')[0].parentElement.style.width = frameWidth + 'px'
   canvas.height = frameHeight
   canvas.width = frameWidth
   
