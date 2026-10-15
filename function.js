@@ -468,13 +468,14 @@ function prepFrameforLoad(frame) {
   //counter.textContent = value
   //slider.value = frame;
   vid.currentTime = value
+  console.log('prepping!', frame)
   //vidbuffer = 0
   requestAnimationFrame(loadAnimationLoop)
 }
 //console.log()
 function loadFrameToCtx(frame) {
   let canvas = document.createElement('canvas')
-  document.getElementsByClass('canvasbox')[0].appendChild(canvas)
+  document.querySelector('.canvasbox').appendChild(canvas)
   let ctx = canvas.getContext('2d')
   let vid = document.querySelector('video')
   //let slider = document.getElementById('slidey')
@@ -508,17 +509,14 @@ function loadFrameToCtx(frame) {
     frameWidth = frameWidth/2
     frameHeight = frameHeight/2
   }
-  document.getElementsByClass('canvasbox')[0].parentElement.style.height = frameHeight + 'px'
-  document.getElementsByClass('canvasbox')[0].parentElement.style.width = frameWidth + 'px'
+  document.querySelector('.canvasbox').parentElement.style.height = frameHeight + 'px'
+  document.querySelector('.canvasbox').parentElement.style.width = frameWidth + 'px'
   canvas.height = frameHeight
   canvas.width = frameWidth
   
-  
   ctx.drawImage(vid, 0,0,frameWidth,frameHeight)
   
-  
   if (vid.dataset.framesloaded < 96 && Math.floor(vid.duration*24) > Math.floor(vid.dataset.framesloaded)) {
-    
     vid.dataset.framesloaded = frame + 1
     prepFrameforLoad(vid.dataset.framesloaded)
   } else {
