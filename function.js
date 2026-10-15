@@ -218,9 +218,15 @@ function addAnimSlider(box) {
         sliderInput.addEventListener('input', function(e) {slidePlanes((e.currentTarget.value*.1), layersbox.children[0], exemptWidthPercent)});
         slidePlanes(sliderInput.value*.1, layersbox.children[0], exemptWidthPercent);
     } else {
-        sliderInput.addEventListener('input', function(e) {
-            setNewFrame(e.currentTarget.value, true, box)
-        });
+        if (box.classList.contains('fromvid') {
+            sliderInput.addEventListener('input', function(e) {
+                vidNewFrame(e.currentTarget.value, true, box)
+            });
+        } else {
+            sliderInput.addEventListener('input', function(e) {
+                setNewFrame(e.currentTarget.value, true, box)
+            });
+        }
         let playbutton = createAnimPlayButton();
         if (!box.classList.contains('fromvid')) {
             sliderInput.max = JSON.parse(box.dataset.frameData).length - 1;
@@ -307,13 +313,55 @@ function animationLoop(timestamp) {
             deltaTime = currentTime - previousTime;
             if (deltaTime > interval) {
                 previousTime = currentTime - (deltaTime % interval);
-                setNewFrame(Number(elementCurrentlyPlaying.dataset.currentFrame), false, elementCurrentlyPlaying)
+                if (elementCurrentlyPlaying.classList.contains('fromvid') {
+                    vidNewFrame(Number(elementCurrentlyPlaying.dataset.currentFrame), false, elementCurrentlyPlaying)
+                } else {
+                    setNewFrame(Number(elementCurrentlyPlaying.dataset.currentFrame), false, elementCurrentlyPlaying)
+                }
             }
             requestAnimationFrame(animationLoop);
         }
         
     }
   
+}
+
+function vidNewFrame(idx, isFromSlider, animbox) {
+    let currentFrame = Number(idx)
+    let animSlider = animbox.querySelector('.animslider')
+
+    let canvasbox = animbox.querySelector('.canvasbox')
+    //let width = animbox.width
+    let total = canvasbox.children.length
+
+    let newPosX = idx/total
+    
+    if (!animbox.dataset.currentFrame) {
+        animbox.dataset.currentFrame = idx;
+        currentFrame = idx;
+        //console.log('aaa',currentFrame)
+    }
+    if (isFromSlider) {
+        animSlider.parentElement.children[0].dataset.toggled = "false";
+        playOrStopAnim(false, animbox)
+    } else {
+        animSlider.value = currentFrame;
+    }
+    //let spritesEl = animbox.querySelector(".anim-sprites")
+    canvasbox.style.transform = "translateX(-" + newPosX + "%)";
+    
+    if (isFromSlider) {
+        currentFrame = animSlider.value
+    } else {
+        currentFrame = idx + 1;
+    }
+      
+    if (currentFrame >= frameData.length) {
+          animbox.dataset.currentFrame = 0;
+    }
+    else {
+        animbox.dataset.currentFrame = currentFrame;
+    }
 }
 
 
@@ -337,8 +385,6 @@ function setNewFrame(idx, isFromSlider, animbox) {
     //console.log('aaa',currentFrame)
   }
   //console.log(frameData, currentFrame, idx)
-  
-  
 
   //console.log(currentFrame)
   if (frameData[currentFrame][0] != 0) {
@@ -393,7 +439,7 @@ function getStarted() {
     let boxes = document.getElementsByClassName('animation-wrapper');
     if (boxes.length > 0) {
         createAllAnimBoxes();
-    } else if (somethingwrong < 500) {
+    } else if (somethingwrong < 5) {
         somethingwrong += 1
         setTimeout(getStarted, 100);
     } else {
