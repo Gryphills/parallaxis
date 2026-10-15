@@ -548,11 +548,15 @@ function loadAnimationLoop(timestamp) {
 }
 
 
-
-if (!checkForVideos()) {
-    console.log('no vids :V!')
-    getStarted()
+document.addEventListener("DOMContentLoaded", function() {
+    console.log('loaded dom!')
+    let videosPresent = checkForVideos()
+    if (!videosPresent) {
+        console.log('no vids :V!')
+        getStarted()
+    }
 }
+
 
 
 
