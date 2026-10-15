@@ -1,6 +1,6 @@
 let elementCurrentlyPlaying = undefined;
 let isPlaying = false;
-let frames_per_second = 12;
+let frames_per_second = 24;
 
 let interval = Math.floor(1000 / frames_per_second);
 let startTime = performance.now();
