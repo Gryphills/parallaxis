@@ -476,8 +476,10 @@ function prepFrameforLoad(frame) {
   //vidbuffer = 0
   requestAnimationFrame(loadAnimationLoop)
 }
-//console.log()
+
+
 function loadFrameToCtx(frame) {
+  console.log(`wheee do ${frame}`, document.querySelector('.canvasbox'))
   let canvas = document.createElement('canvas')
   document.querySelector('.canvasbox').appendChild(canvas)
   let ctx = canvas.getContext('2d')
@@ -541,9 +543,9 @@ function loadAnimationLoop(timestamp) {
     deltaTime = currentTime - previousTime;
     if (deltaTime > interval) {
       previousTime = currentTime - (deltaTime % interval);
-      //
+      console.log(`vidbuffer is ${vid.dataset.vidbuffer}`)
       if (Number(vid.dataset.vidbuffer) < 1) {
-        loadFrameToCtx(vid.dataset.framesloaded);
+        loadFrameToCtx(Number(vid.dataset.framesloaded));
         vid.dataset.vidbuffer = 1;
       } else {
         Number(vid.dataset.vidbuffer) -= 1;
