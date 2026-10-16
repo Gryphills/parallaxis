@@ -25,7 +25,7 @@ function updateImageDisplay(preview) {
   while (preview.firstChild) {
     preview.removeChild(preview.firstChild);
   }
-  const curFiles = input.files;
+  const curFiles = uploadbutton.files;
   if (curFiles.length === 0) {
     const para = document.createElement("p");
     para.textContent = "No files currently selected for upload";
