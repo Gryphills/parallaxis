@@ -13,7 +13,10 @@ function prep() {
   uploadbutton = document.getElementById('uploadbutton')
   uploadedDiv = document.getElementById('uploadedimgs')
 
-  uploadbutton.addEventListener("change", updateImageDisplay(uploadedDiv);
+  uploadbutton.addEventListener("change", function(e) {
+      updateImageDisplay(uploadedDiv);
+      console.log('oh!')      
+  }
 }
 
 
