@@ -23,8 +23,8 @@ function prep() {
 function squares() {
     let holder = document.getElementById('timelinesquares')
     holder.style.display = "flex";
-    for (i=0;i<100;i++) {
-        let another = holder.children[0]cloneNode()
+    for (i=0; i<100;i++) {
+        let another = holder.children[0].cloneNode()
         holder.appendChild(another)
     }
 }
