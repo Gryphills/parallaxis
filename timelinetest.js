@@ -16,7 +16,7 @@ function prep() {
   uploadbutton.addEventListener("change", function(e) {
       updateImageDisplay(uploadedDiv);
       console.log('oh!')      
-  }
+  })
 }
 
 
