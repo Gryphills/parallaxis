@@ -6,6 +6,7 @@ let uploadedDiv
 document.addEventListener("DOMContentLoaded", function() {
     console.log('loaded dom!');
     prep();
+    squares();
 })
 
 
@@ -19,6 +20,14 @@ function prep() {
   })
 }
 
+function squares() {
+    let holder = document.getElementById('timelinesquares')
+    holder.style.display = "flex";
+    for (i=0;i<100;i++) {
+        let another = holder.children[0]cloneNode()
+        holder.appendChild(another)
+    }
+}
 
 
 function updateImageDisplay(preview) {
@@ -43,8 +52,6 @@ function updateImageDisplay(preview) {
 
       listItem.appendChild(image);
       //listItem.appendChild(para);
-    
-
       list.appendChild(listItem);
     }
   }
