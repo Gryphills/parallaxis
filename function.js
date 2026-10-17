@@ -355,12 +355,19 @@ function vidNewFrame(idx, isFromSlider, animbox) {
     } else {
         currentFrame = idx + 1;
     }
-      
-    if (currentFrame >= frameData.length) {
-          animbox.dataset.currentFrame = 0;
-    }
-    else {
-        animbox.dataset.currentFrame = currentFrame;
+    
+    if (animbox.dataset.frameData) {
+        if (currentFrame >= animbox.dataset.frameData.length) {
+              animbox.dataset.currentFrame = 0;
+        }
+        else {
+            animbox.dataset.currentFrame = currentFrame;
+        }
+    } else {
+        let canvasbox = animbox.querySelector('canvasbox')
+        let frameCount = canvasbox.children.length
+        let framePercent = 100/frameCount
+        canvasbox.style.transform = `translateX(${framePercent*(currentFrame-1)})`
     }
 }
 
