@@ -49,9 +49,9 @@ function squares() {
         let another = document.createElement('div')
         another.classList.add('timelineframe')
         let hold = frames[i].dataset.holdTime;
-        another.style.width = `${15*hold}px`
+        another.style.width = `${15*hold}px`;
         another.addEventListener('click', function(e) {
-            setNewFrame(i, true, frames.closest('.animbox')
+            setNewFrame(i, true, frames.closest('.animbox'))
         })
         holder.appendChild(another)
     }
