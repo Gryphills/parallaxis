@@ -40,7 +40,7 @@ function squares() {
         another.style.width = `${15*hold}px`
         another.addEventListener('click', function(e) {
             openFrame(frames[i])
-        }
+        })
         holder.appendChild(another)
     }
 }
