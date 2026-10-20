@@ -1,5 +1,16 @@
 //okayyyyy!
 
+let elementCurrentlyPlaying = undefined;
+let isPlaying = false;
+let frames_per_second = 24;
+
+let interval = Math.floor(1000 / frames_per_second);
+let startTime = performance.now();
+let previousTime = startTime;
+
+let currentTime = 0;
+let deltaTime = 0;
+
 let uploadbutton
 let uploadedDiv
 
@@ -15,6 +26,7 @@ function prep() {
     uploadedDiv = document.getElementById('uploadedimgs')
     let frameholder = document.querySelector('.frameholder')
     frameholder.style.display = 'flex'
+    document.querySelector('.animslider').before(createAnimPlayButton())
     
     uploadbutton.addEventListener("change", function(e) {
       updateImageDisplay(frameholder);
@@ -39,7 +51,7 @@ function squares() {
         let hold = frames[i].dataset.holdTime;
         another.style.width = `${15*hold}px`
         another.addEventListener('click', function(e) {
-            openFrame(frames[i])
+            setNewFrame(i, true, frames.closest('.animbox')
         })
         holder.appendChild(another)
     }
@@ -47,6 +59,7 @@ function squares() {
 
 function openFrame(frame) {
     console.log('wow! got a frame,,,')
+    //setNewFrame(frame
 }
 
 function updateImageDisplay(preview) {
@@ -84,3 +97,53 @@ function updateFrameCounts() {
     squares()
 }
 
+function createAnimPlayButton() {
+    let playbutton = document.createElement('input');
+    playbutton.type = "button";
+    playbutton.value = ' > ';
+    playbutton.alt = "Play/Pause"
+    playbutton.classList.add('playbutton')
+    playbutton.dataset.toggled = "false";
+    playbutton.addEventListener('click', function(e) {
+      if (playbutton.dataset.toggled == "false") {
+        playbutton.dataset.toggled = "true";
+        playOrStopAnim(true, e.currentTarget.parentElement.parentElement);
+      } else {
+        playbutton.dataset.toggled = "false";
+        playOrStopAnim(false, e.currentTarget.parentElement.parentElement);
+      }
+    })
+    return playbutton;
+}
+
+function animationLoop(timestamp) {
+    if (isPlaying) {
+        if (elementCurrentlyPlaying != undefined) {
+            currentTime = timestamp;
+            deltaTime = currentTime - previousTime;
+            if (deltaTime > interval) {
+                previousTime = currentTime - (deltaTime % interval);
+                setNewFrame(Number(elementCurrentlyPlaying.dataset.currentFrame), false, elementCurrentlyPlaying)
+            }
+            requestAnimationFrame(animationLoop);
+        }
+    }
+}
+
+function setNewFrame(idx, fromSlider, animbox) {
+    let frameholder = animbox.querySelector('.frameholder');
+    let framecount = frameholder.children.length;
+    frameholder.style.transform = `translatex(-${idx/framecount*100}%)`
+    animbox.dataset.currentFrame = idx;
+}
+
+function playOrStopAnim(signal, boxEl) {
+  isPlaying = signal;
+
+  if (signal) {
+    elementCurrentlyPlaying = boxEl;
+    requestAnimationFrame(animationLoop);
+  } else {
+    elementCurrentlyPlaying = undefined;
+  }
+}
