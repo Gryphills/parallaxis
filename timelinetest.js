@@ -45,7 +45,7 @@ function squares() {
     }
 }
 
-openFrame(frame) {
+function openFrame(frame) {
     console.log('wow! got a frame,,,')
 }
 
